@@ -254,6 +254,13 @@
       * { animation: none !important; transition: none !important; }
     }
 
+    @media (max-width: 768px) {
+  .hero-bg {
+    min-height: auto !important; /* let content define height */
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+  }
+
     /* ===== RESPONSIVE IMPROVEMENTS FOR OUR EXPERTISE SECTION ===== */
     
     /* Service item containers */
@@ -493,40 +500,64 @@
   </nav>
 
   <!-- Hero Section -->
-  <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden pt-16 pb-10">
-    <canvas id="particleCanvas" class="particle-canvas" aria-hidden="true"></canvas>
-    <div class="text-center z-10 max-w-6xl mx-auto px-4 py-10">
-      <div class="floating-slow mb-8">
-        <h1 class="orbitron text-4xl xs:text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-[1.05]">
-          <span class="text-gradient">MOON</span>
-          <span class="text-gradient-2">WAVE</span>
-        </h1>
-        <p class="orbitron text-base md:text-2xl text-gray-300 mb-4">STUDIOS</p>
-      </div>
+ <!-- Hero Section -->
+<section id="home" 
+  class="hero-bg flex items-center justify-center relative overflow-hidden pt-16 pb-10
+  min-h-screen md:min-h-screen sm:min-h-[auto]">
+  
+  <canvas id="particleCanvas" class="particle-canvas" aria-hidden="true"></canvas>
+  
+  <div class="text-center z-10 max-w-6xl mx-auto px-4 py-10">
+    <div class="floating-slow mb-8">
+      <h1 class="orbitron text-4xl xs:text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-[1.05]">
+        <span class="text-gradient">MOON</span>
+        <span class="text-gradient-2">WAVE</span>
+      </h1>
+      <p class="orbitron text-base md:text-2xl text-gray-300 mb-4">STUDIOS</p>
+    </div>
 
-      <div class="floating-fast mb-10">
-        <p class="text-sm md:text-lg text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
-          Crafting next-generation digital experiences through cutting-edge web development, immersive 3D artistry, architectural visualization, and game development.
-        </p>
-        <div class="flex flex-wrap justify-center gap-3 md:gap-4 mb-8">
-          <div class="glass-morphism px-3 py-1 xs:px-4 xs:py-2 rounded-full text-xs xs:text-sm"><i class="fas fa-code text-blue-400 mr-2"></i>Full-Stack Development</div>
-          <div class="glass-morphism px-3 py-1 xs:px-4 xs:py-2 rounded-full text-xs xs:text-sm"><i class="fas fa-cube text-purple-400 mr-2"></i>3D/2D Artistry</div>
-          <div class="glass-morphism px-3 py-1 xs:px-4 xs:py-2 rounded-full text-xs xs:text-sm"><i class="fas fa-building text-cyan-400 mr-2"></i>Architecture & Design</div>
-          <div class="glass-morphism px-3 py-1 xs:px-4 xs:py-2 rounded-full text-xs xs:text-sm"><i class="fas fa-gamepad text-green-400 mr-2"></i>Game Development</div>
-          <div class="glass-morphism px-3 py-1 xs:px-4 xs:py-2 rounded-full text-xs xs:text-sm"><i class="fas fa-mobile-alt text-indigo-400 mr-2"></i>Mobile App Development</div>
+    <div class="floating-fast mb-10">
+      <p class="text-sm md:text-lg text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
+        Crafting next-generation digital experiences through cutting-edge web development,
+        immersive 3D artistry, architectural visualization, and game development.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3 md:gap-4 mb-8">
+        <div class="glass-morphism px-3 py-1 xs:px-4 xs:py-2 rounded-full text-xs xs:text-sm">
+          <i class="fas fa-code text-blue-400 mr-2"></i>Full-Stack Development
+        </div>
+        <div class="glass-morphism px-3 py-1 xs:px-4 xs:py-2 rounded-full text-xs xs:text-sm">
+          <i class="fas fa-cube text-purple-400 mr-2"></i>3D/2D Artistry
+        </div>
+        <div class="glass-morphism px-3 py-1 xs:px-4 xs:py-2 rounded-full text-xs xs:text-sm">
+          <i class="fas fa-building text-cyan-400 mr-2"></i>Architecture & Design
+        </div>
+        <div class="glass-morphism px-3 py-1 xs:px-4 xs:py-2 rounded-full text-xs xs:text-sm">
+          <i class="fas fa-gamepad text-green-400 mr-2"></i>Game Development
+        </div>
+        <div class="glass-morphism px-3 py-1 xs:px-4 xs:py-2 rounded-full text-xs xs:text-sm">
+          <i class="fas fa-mobile-alt text-indigo-400 mr-2"></i>Mobile App Development
         </div>
       </div>
-
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="#portfolio" class="group relative px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 rounded-full font-semibold overflow-hidden transition-all duration-300 hover:scale-105 text-sm sm:text-base">
-          <span class="relative z-10">Explore Our Universe</span>
-          <div class="absolute inset-0 bg-gradient-to-r from-purple-700 via-blue-700 to-cyan-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        </a>
-        <a href="#contact" class="px-6 py-3 sm:px-8 sm:py-4 glass-morphism rounded-full font-semibold hover:bg-white/10 transition-all duration-300 text-sm sm:text-base">Start Your Project</a>
-      </div>
     </div>
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce" aria-hidden="true"><i class="fas fa-chevron-down text-2xl text-purple-400"></i></div>
-  </section>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="#portfolio"
+        class="group relative px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 rounded-full font-semibold overflow-hidden transition-all duration-300 hover:scale-105 text-sm sm:text-base">
+        <span class="relative z-10">Explore Our Universe</span>
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-purple-700 via-blue-700 to-cyan-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        </div>
+      </a>
+      <a href="#contact"
+        class="px-6 py-3 sm:px-8 sm:py-4 glass-morphism rounded-full font-semibold hover:bg-white/10 transition-all duration-300 text-sm sm:text-base">
+        Start Your Project
+      </a>
+    </div>
+  </div>
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce" aria-hidden="true">
+    <i class="fas fa-chevron-down text-2xl text-purple-400"></i>
+  </div>
+</section>
 
   <!-- Services Section -->
   <section id="services" class="py-16 md:py-20 bg-gradient-to-b from-gray-900 to-black">
