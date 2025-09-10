@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -43,49 +44,36 @@
     body { font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; background: #0a0a0a; color: #ffffff !important; }
     .orbitron { font-family: 'Orbitron', monospace; }
 
+    /* === Global Color Overrides === */
+    section,
+    footer,
+    .glass-morphism,
+    .card {
+      color: #ffffff !important;
+    }
 
-/* === Global Color Overrides === */
+    h1, h2, h3, h4, h5, h6 {
+      color: #ffffff !important;
+    }
 
+    p, li, figcaption, label,
+    input::placeholder, textarea::placeholder,
+    select, option {
+      color: #e5e7eb !important;
+    }
 
+    input, select, textarea {
+      color: #ffffff !important;
+      background-color: rgba(0,0,0,0.4);
+    }
 
-/* Sections, cards, containers */
-section,
-footer,
-.glass-morphism,
-.card {
-  color: #ffffff !important;
-}
+    footer p {
+      color: #ffffff !important;
+    }
 
-/* Headings: strong white */
-h1, h2, h3, h4, h5, h6 {
-  color: #ffffff !important;
-}
-
-/* Paragraphs, list items, labels, placeholders */
-p, li, figcaption, label,
-input::placeholder, textarea::placeholder,
-select, option {
-  color: #e5e7eb !important; /* Tailwind gray-200 = soft white */
-}
-
-/* Inputs and form text */
-input, select, textarea {
-  color: #ffffff !important;
-  background-color: rgba(0,0,0,0.4); /* keeps glass effect */
-}
-
-/* Footer text */
-footer p {
-  color: #ffffff !important;
-}
-
-/* Buttons and links remain gradient/glass but text is white */
-button, a {
-  color: #ffffff !important;
-}
-
-
-
+    button, a {
+      color: #ffffff !important;
+    }
 
     .hero-bg { background:
       radial-gradient(circle at 20% 20%, rgba(120,119,198,.3) 0%, transparent 50%),
@@ -266,14 +254,34 @@ button, a {
       * { animation: none !important; transition: none !important; }
     }
 
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .hero-bg {
-        padding-top: 6rem;
-        padding-bottom: 4rem;
-        min-height: auto;
+    /* ===== RESPONSIVE IMPROVEMENTS FOR OUR EXPERTISE SECTION ===== */
+    
+    /* Service item containers */
+    .service-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    @media (min-width: 1024px) {
+      .service-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
       }
       
+      .service-container.reverse {
+        direction: rtl;
+      }
+      
+      .service-container.reverse > * {
+        direction: ltr;
+      }
+    }
+    
+    /* Service gallery improvements */
+    @media (max-width: 768px) {
       .service-gallery {
         display: none;
       }
@@ -282,8 +290,91 @@ button, a {
         display: block;
       }
       
+      /* Make tech grid 2 columns on mobile */
       .tech-grid {
         grid-template-columns: repeat(2, 1fr);
+      }
+      
+      /* Adjust service headings for mobile */
+      .service-heading {
+        font-size: 1.5rem !important;
+        margin-bottom: 0.5rem !important;
+      }
+      
+      .service-subheading {
+        font-size: 0.9rem !important;
+      }
+      
+      /* Adjust progress bars for mobile */
+      .progress-container {
+        margin-top: 1.5rem;
+      }
+      
+      .progress-label {
+        font-size: 0.8rem;
+      }
+      
+      .progress-value {
+        font-size: 0.8rem;
+      }
+      
+      /* Adjust gallery items for very small screens */
+      .mobile-service-gallery {
+        grid-template-columns: 1fr;
+      }
+      
+      .mobile-gallery-item {
+        height: 110px;
+        padding: 0.75rem;
+      }
+      
+      .mobile-gallery-item i {
+        font-size: 1.5rem !important;
+        margin-bottom: 0.25rem !important;
+      }
+      
+      .mobile-gallery-item h4 {
+        font-size: 0.9rem !important;
+      }
+      
+      .mobile-gallery-item p {
+        font-size: 0.75rem !important;
+      }
+    }
+    
+    /* For tablets and medium screens */
+    @media (min-width: 769px) and (max-width: 1023px) {
+      .service-container {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+      
+      .mobile-service-section {
+        display: none;
+      }
+      
+      .service-gallery {
+        display: flex;
+      }
+      
+      /* Adjust gallery items for tablet */
+      .gallery-item {
+        flex: 0 0 220px;
+        height: 180px;
+      }
+      
+      .tech-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    /* General responsive adjustments */
+    @media (max-width: 768px) {
+      .hero-bg {
+        padding-top: 6rem;
+        padding-bottom: 4rem;
+        min-height: auto;
       }
       
       .testimonial-track {
@@ -446,13 +537,12 @@ button, a {
       </div>
 
       <!-- Web Development -->
-      <div class="mb-16 md:mb-20 grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+      <div class="mb-16 md:mb-20 service-container">
         <div>
           <div class="flex items-center mb-6">
-           
             <div>
-              <h3 class="orbitron text-2xl md:text-3xl font-bold text-blue-400 mb-1">Web Development</h3>
-              <p class="text-gray-400 text-sm md:text-base">Full-Stack Solutions & Modern Frameworks</p>
+              <h3 class="orbitron text-2xl md:text-3xl font-bold text-blue-400 mb-1 service-heading">Web Development</h3>
+              <p class="text-gray-400 text-sm md:text-base service-subheading">Full-Stack Solutions & Modern Frameworks</p>
             </div>
           </div>
           <p class="text-gray-300 mb-6 leading-relaxed text-sm md:text-base">Responsive, high-performance web apps using React/Next.js, Node.js APIs, and robust data layers. We ship clean code, fast UIs, and scalable infra.</p>
@@ -462,14 +552,13 @@ button, a {
             <div class="tech-item hover-lift"><i class="fab fa-python text-2xl text-yellow-400 mb-2"></i><div class="text-sm">Python / Django</div></div>
             <div class="tech-item hover-lift"><i class="fas fa-database text-2xl text-orange-400 mb-2"></i><div class="text-sm">MongoDB / SQL</div></div>
             <div class="tech-item hover-lift"><i class="fab fa-aws text-2xl text-orange-500 mb-2"></i><div class="text-sm">Laravel / php</div></div>
-            
           </div>
-          <div class="space-y-3">
-            <div class="flex justify-between items-center"><span class="text-sm text-gray-400">Frontend Development</span><span class="text-sm text-blue-400">95%</span></div>
+          <div class="space-y-3 progress-container">
+            <div class="flex justify-between items-center"><span class="text-sm text-gray-400 progress-label">Frontend Development</span><span class="text-sm text-blue-400 progress-value">95%</span></div>
             <div class="progress-bar"><div class="progress-fill" style="width:95%"></div></div>
-            <div class="flex justify-between items-center"><span class="text-sm text-gray-400">Backend Architecture</span><span class="text-sm text-blue-400">92%</span></div>
+            <div class="flex justify-between items-center"><span class="text-sm text-gray-400 progress-label">Backend Architecture</span><span class="text-sm text-blue-400 progress-value">92%</span></div>
             <div class="progress-bar"><div class="progress-fill" style="width:92%"></div></div>
-            <div class="flex justify-between items-center"><span class="text-sm text-gray-400">DevOps & Deployment</span><span class="text-sm text-blue-400">88%</span></div>
+            <div class="flex justify-between items-center"><span class="text-sm text-gray-400 progress-label">DevOps & Deployment</span><span class="text-sm text-blue-400 progress-value">88%</span></div>
             <div class="progress-bar"><div class="progress-fill" style="width:88%"></div></div>
           </div>
         </div>
@@ -526,8 +615,8 @@ button, a {
       </div>
 
       <!-- Mobile App Development -->
-      <div class="mb-16 md:mb-20 grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
-        <div class="order-2 lg:order-1">
+      <div class="mb-16 md:mb-20 service-container reverse">
+        <div>
           <div class="service-gallery">
             <div class="gallery-item bg-gradient-to-br from-indigo-600/20 to-purple-600/20 grid place-items-center text-center px-4">
               <i class="fas fa-mobile-alt text-4xl text-indigo-400 mb-3"></i>
@@ -577,12 +666,11 @@ button, a {
             </div>
           </div>
         </div>
-        <div class="order-1 lg:order-2">
+        <div>
           <div class="flex items-center mb-6">
-           
             <div>
-              <h3 class="orbitron text-2xl md:text-3xl font-bold text-indigo-400 mb-1">Mobile App Development</h3>
-              <p class="text-gray-400 text-sm md:text-base">Cross-Platform • Flutter • Native</p>
+              <h3 class="orbitron text-2xl md:text-3xl font-bold text-indigo-400 mb-1 service-heading">Mobile App Development</h3>
+              <p class="text-gray-400 text-sm md:text-base service-subheading">Cross-Platform • Flutter • Native</p>
             </div>
           </div>
           <p class="text-gray-300 mb-6 leading-relaxed text-sm md:text-base">We build beautiful, performant mobile applications for iOS and Android using Flutter for cross-platform solutions and native technologies when needed.</p>
@@ -594,20 +682,45 @@ button, a {
             <div class="tech-item hover-lift"><i class="fas fa-database text-2xl text-blue-300 mb-2"></i><div class="text-sm">SQLite</div></div>
             <div class="tech-item hover-lift"><i class="fas fa-plug text-2xl text-purple-400 mb-2"></i><div class="text-sm">REST APIs</div></div>
           </div>
-          <div class="space-y-3">
-            <div class="flex justify-between items-center"><span class="text-sm text-gray-400">UI/UX Design</span><span class="text-sm text-indigo-400">93%</span></div>
+          <div class="space-y-3 progress-container">
+            <div class="flex justify-between items-center"><span class="text-sm text-gray-400 progress-label">UI/UX Design</span><span class="text-sm text-indigo-400 progress-value">93%</span></div>
             <div class="progress-bar"><div class="progress-fill" style="width:93%"></div></div>
-            <div class="flex justify-between items-center"><span class="text-sm text-gray-400">Performance</span><span class="text-sm text-indigo-400">90%</span></div>
+            <div class="flex justify-between items-center"><span class="text-sm text-gray-400 progress-label">Performance</span><span class="text-sm text-indigo-400 progress-value">90%</span></div>
             <div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div>
-            <div class="flex justify-between items-center"><span class="text-sm text-gray-400">Cross-Platform</span><span class="text-sm text-indigo-400">95%</span></div>
+            <div class="flex justify-between items-center"><span class="text-sm text-gray-400 progress-label">Cross-Platform</span><span class="text-sm text-indigo-400 progress-value">95%</span></div>
             <div class="progress-bar"><div class="progress-fill" style="width:95%"></div></div>
           </div>
         </div>
       </div>
 
       <!-- 3D/2D Artistry -->
-      <div class="mb-16 md:mb-20 grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
-        <div class="order-2 lg:order-1">
+      <div class="mb-16 md:mb-20 service-container">
+        <div>
+          <div class="flex items-center mb-6">
+            <div>
+              <h3 class="orbitron text-2xl md:text-3xl font-bold text-purple-400 mb-1 service-heading">3D/2D Artistry</h3>
+              <p class="text-gray-400 text-sm md:text-base service-subheading">Modeling, Texturing, Rigging & Animation</p>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-6 leading-relaxed text-sm md:text-base">From stylized to photoreal, we deliver production-ready assets and animations for games, films, and interactive media.</p>
+          <div class="tech-grid mb-6">
+            <div class="tech-item hover-lift"><i class="fas fa-cubes text-2xl text-orange-400 mb-2"></i><div class="text-sm">Blender</div></div>
+            <div class="tech-item hover-lift"><i class="fas fa-layer-group text-2xl text-blue-400 mb-2"></i><div class="text-sm">Maya</div></div>
+            <div class="tech-item hover-lift"><i class="fas fa-image text-2xl text-green-400 mb-2"></i><div class="text-sm">Substance 3D</div></div>
+            <div class="tech-item hover-lift"><i class="fas fa-pen-nib text-2xl text-pink-400 mb-2"></i><div class="text-sm">ZBrush</div></div>
+            <div class="tech-item hover-lift"><i class="fas fa-photo-video text-2xl text-red-400 mb-2"></i><div class="text-sm">After Effects</div></div>
+            <div class="tech-item hover-lift"><i class="fas fa-shirt text-2xl text-purple-400 mb-2"></i><div class="text-sm">Marvelous Designer</div></div>
+          </div>
+          <div class="space-y-3 progress-container">
+            <div class="flex justify-between items-center"><span class="text-sm text-gray-400 progress-label">Modeling & Sculpting</span><span class="text-sm text-purple-400 progress-value">92%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:92%"></div></div>
+            <div class="flex justify-between items-center"><span class="text-sm text-gray-400 progress-label">Texturing & Materials</span><span class="text-sm text-purple-400 progress-value">88%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:88%"></div></div>
+            <div class="flex justify-between items-center"><span class="text-sm text-gray-400 progress-label">Rigging & Animation</span><span class="text-sm text-purple-400 progress-value">85%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div>
+          </div>
+        </div>
+        <div>
           <div class="service-gallery">
             <div class="gallery-item bg-gradient-to-br from-purple-600/20 to-pink-600/20 grid place-items-center text-center px-4">
               <i class="fas fa-cube text-4xl text-purple-400 mb-3"></i>
@@ -657,38 +770,11 @@ button, a {
             </div>
           </div>
         </div>
-        <div class="order-1 lg:order-2">
-          <div class="flex items-center mb-6">
-          
-            <div>
-              <h3 class="orbitron text-2xl md:text-3xl font-bold text-purple-400 mb-1">3D/2D Artistry</h3>
-              <p class="text-gray-400 text-sm md:text-base">Modeling, Texturing, Rigging & Animation</p>
-            </div>
-          </div>
-          <p class="text-gray-300 mb-6 leading-relaxed text-sm md:text-base">From stylized to photoreal, we deliver production-ready assets and animations for games, films, and interactive media.</p>
-          <div class="tech-grid mb-6">
-            <div class="tech-item hover-lift"><i class="fas fa-cubes text-2xl text-orange-400 mb-2"></i><div class="text-sm">Blender</div></div>
-            <div class="tech-item hover-lift"><i class="fas fa-layer-group text-2xl text-blue-400 mb-2"></i><div class="text-sm">Maya</div></div>
-            <div class="tech-item hover-lift"><i class="fas fa-image text-2xl text-green-400 mb-2"></i><div class="text-sm">Substance 3D</div></div>
-            <div class="tech-item hover-lift"><i class="fas fa-pen-nib text-2xl text-pink-400 mb-2"></i><div class="text-sm">ZBrush</div></div>
-            <div class="tech-item hover-lift"><i class="fas fa-photo-video text-2xl text-red-400 mb-2"></i><div class="text-sm">After Effects</div></div>
-            <div class="tech-item hover-lift"><i class="fas fa-shirt text-2xl text-purple-400 mb-2"></i><div class="text-sm">Marvelous Designer</div></div>
-          </div>
-          <div class="space-y-3">
-            <div class="flex justify-between items-center"><span class="text-sm text-gray-400">Modeling & Sculpting</span><span class="text-sm text-purple-400">92%</span></div>
-            <div class="progress-bar"><div class="progress-fill" style="width:92%"></div></div>
-            <div class="flex justify-between items-center"><span class="text-sm text-gray-400">Texturing & Materials</span><span class="text-sm text-purple-400">88%</span></div>
-            <div class="progress-bar"><div class="progress-fill" style="width:88%"></div></div>
-            <div class="flex justify-between items-center"><span class="text-sm text-gray-400">Rigging & Animation</span><span class="text-sm text-purple-400">85%</span></div>
-            <div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div>
-          </div>
-        </div>
       </div>
 
       <!-- Architecture -->
-      <div class="mb-16 md:mb-20 grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
-        <!-- Gallery -->
-        <div class="order-2 lg:order-1">
+      <div class="mb-16 md:mb-20 service-container reverse">
+        <div>
           <div class="service-gallery">
             <div class="gallery-item bg-gradient-to-br from-cyan-600/20 to-blue-600/20 grid place-items-center text-center px-4">
               <i class="fas fa-city text-4xl text-cyan-400 mb-3"></i>
@@ -739,12 +825,11 @@ button, a {
           </div>
         </div>
         <!-- Description -->
-        <div class="order-1 lg:order-2">
+        <div>
           <div class="flex items-center mb-6">
-           
             <div>
-              <h3 class="orbitron text-2xl md:text-3xl font-bold text-cyan-300 mb-1">Architectural Design</h3>
-              <p class="text-gray-400 text-sm md:text-base">Visualization • AR • Walkthroughs</p>
+              <h3 class="orbitron text-2xl md:text-3xl font-bold text-cyan-300 mb-1 service-heading">Architectural Design</h3>
+              <p class="text-gray-400 text-sm md:text-base service-subheading">Visualization • AR • Walkthroughs</p>
             </div>
           </div>
           <p class="text-gray-300 mb-6 leading-relaxed text-sm md:text-base">We craft photoreal interiors, exteriors, lighting setups, and immersive walkthroughs with AR/VR integration for architecture and real estate.</p>
@@ -754,26 +839,25 @@ button, a {
             <div class="tech-item hover-lift"><i class="fas fa-lightbulb text-2xl text-yellow-400 mb-2"></i><div class="text-sm">Lumion</div></div>
             <div class="tech-item hover-lift"><i class="fas fa-drafting-compass text-2xl text-green-400 mb-2"></i><div class="text-sm">SketchUp</div></div>
           </div>
-          <div class="space-y-3">
-            <div class="flex justify-between items-center"><span class="text-sm text-gray-400">Photoreal Renders</span><span class="text-sm text-cyan-400">94%</span></div>
+          <div class="space-y-3 progress-container">
+            <div class="flex justify-between items-center"><span class="text-sm text-gray-400 progress-label">Photoreal Renders</span><span class="text-sm text-cyan-400 progress-value">94%</span></div>
             <div class="progress-bar"><div class="progress-fill" style="width:94%"></div></div>
-            <div class="flex justify-between items-center"><span class="text-sm text-gray-400">Walkthroughs</span><span class="text-sm text-cyan-400">90%</span></div>
+            <div class="flex justify-between items-center"><span class="text-sm text-gray-400 progress-label">Walkthroughs</span><span class="text-sm text-cyan-400 progress-value">90%</span></div>
             <div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div>
-            <div class="flex justify-between items-center"><span class="text-sm text-gray-400">VR/AR Integration</span><span class="text-sm text-cyan-400">85%</span></div>
+            <div class="flex justify-between items-center"><span class="text-sm text-gray-400 progress-label">VR/AR Integration</span><span class="text-sm text-cyan-400 progress-value">85%</span></div>
             <div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div>
           </div>
         </div>
       </div>
 
       <!-- Game Development -->
-      <div class="mb-16 md:mb-20 grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+      <div class="mb-16 md:mb-20 service-container">
         <!-- Description -->
         <div>
           <div class="flex items-center mb-6">
-          
             <div>
-              <h3 class="orbitron text-2xl md:text-3xl font-bold text-emerald-300 mb-1">Game Development</h3>
-              <p class="text-gray-400 text-sm md:text-base">Gameplay • Assets • Optimization</p>
+              <h3 class="orbitron text-2xl md:text-3xl font-bold text-emerald-300 mb-1 service-heading">Game Development</h3>
+              <p class="text-gray-400 text-sm md:text-base service-subheading">Gameplay • Assets • Optimization</p>
             </div>
           </div>
           <p class="text-gray-300 mb-6 leading-relaxed text-sm md:text-base">From prototype to final build, we create immersive games with engaging gameplay systems, polished assets, and optimized performance.</p>
@@ -783,12 +867,12 @@ button, a {
             <div class="tech-item hover-lift"><i class="fas fa-code text-2xl text-yellow-400 mb-2"></i><div class="text-sm">C#</div></div>
             <div class="tech-item hover-lift"><i class="fas fa-project-diagram text-2xl text-purple-400 mb-2"></i><div class="text-sm">Blueprints</div></div>
           </div>
-          <div class="space-y-3">
-            <div class="flex justify-between items-center"><span class="text-sm text-gray-400">Gameplay Systems</span><span class="text-sm text-emerald-400">93%</span></div>
+          <div class="space-y-3 progress-container">
+            <div class="flex justify-between items-center"><span class="text-sm text-gray-400 progress-label">Gameplay Systems</span><span class="text-sm text-emerald-400 progress-value">93%</span></div>
             <div class="progress-bar"><div class="progress-fill" style="width:93%"></div></div>
-            <div class="flex justify-between items-center"><span class="text-sm text-gray-400">Art & Assets</span><span class="text-sm text-emerald-400">89%</span></div>
+            <div class="flex justify-between items-center"><span class="text-sm text-gray-400 progress-label">Art & Assets</span><span class="text-sm text-emerald-400 progress-value">89%</span></div>
             <div class="progress-bar"><div class="progress-fill" style="width:89%"></div></div>
-            <div class="flex justify-between items-center"><span class="text-sm text-gray-400">Performance Optimization</span><span class="text-sm text-emerald-400">87%</span></div>
+            <div class="flex justify-between items-center"><span class="text-sm text-gray-400 progress-label">Performance Optimization</span><span class="text-sm text-emerald-400 progress-value">87%</span></div>
             <div class="progress-bar"><div class="progress-fill" style="width:87%"></div></div>
           </div>
         </div>
